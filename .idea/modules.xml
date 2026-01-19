@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ActividadBuenasPracticas/ActividadBuenasPracticas.iml" filepath="$PROJECT_DIR$/ActividadBuenasPracticas/ActividadBuenasPracticas.iml" />
       <module fileurl="file://$PROJECT_DIR$/MergeWithConflict/MergeWithConflict.iml" filepath="$PROJECT_DIR$/MergeWithConflict/MergeWithConflict.iml" />
       <module fileurl="file://$PROJECT_DIR$/MergeWithOutConflict/MergeWithOutConflict.iml" filepath="$PROJECT_DIR$/MergeWithOutConflict/MergeWithOutConflict.iml" />
       <module fileurl="file://$PROJECT_DIR$/prog-str-2D-silvana-escamilla.iml" filepath="$PROJECT_DIR$/prog-str-2D-silvana-escamilla.iml" />
