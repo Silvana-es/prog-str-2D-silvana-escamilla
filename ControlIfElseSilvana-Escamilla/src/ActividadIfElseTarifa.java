@@ -40,4 +40,5 @@ public class ActividadIfElseTarifa {
         System.out.println("Es estudiante: " + esEstudiante);
         System.out.println("Tarifa final: $" + tarifa);
     }
+
 }

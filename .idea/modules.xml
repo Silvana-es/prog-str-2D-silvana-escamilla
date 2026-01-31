@@ -4,9 +4,12 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ActividadBuenasPracticas/ActividadBuenasPracticas.iml" filepath="$PROJECT_DIR$/ActividadBuenasPracticas/ActividadBuenasPracticas.iml" />
       <module fileurl="file://$PROJECT_DIR$/ControlIfElseSilvana-Escamilla/ControlIfElseSilvana-Escamilla.iml" filepath="$PROJECT_DIR$/ControlIfElseSilvana-Escamilla/ControlIfElseSilvana-Escamilla.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ControlSwitchSilvana-Escamilla/ControlSwitchSilvana-Escamilla.iml" filepath="$PROJECT_DIR$/ControlSwitchSilvana-Escamilla/ControlSwitchSilvana-Escamilla.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java2/Java2.iml" filepath="$PROJECT_DIR$/Java2/Java2.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavacGarciaEder/JavacGarciaEder.iml" filepath="$PROJECT_DIR$/JavacGarciaEder/JavacGarciaEder.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavadocEscamillaSilvana/JavadocEscamillaSilvana.iml" filepath="$PROJECT_DIR$/JavadocEscamillaSilvana/JavadocEscamillaSilvana.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JuegoBanderasSilvana-Escamilla/JuegoBanderasSilvana-Escamilla.iml" filepath="$PROJECT_DIR$/JuegoBanderasSilvana-Escamilla/JuegoBanderasSilvana-Escamilla.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MenuConversionSilvana-Escamilla/MenuConversionSilvana-Escamilla.iml" filepath="$PROJECT_DIR$/MenuConversionSilvana-Escamilla/MenuConversionSilvana-Escamilla.iml" />
       <module fileurl="file://$PROJECT_DIR$/MergeWithConflict/MergeWithConflict.iml" filepath="$PROJECT_DIR$/MergeWithConflict/MergeWithConflict.iml" />
       <module fileurl="file://$PROJECT_DIR$/MergeWithOutConflict/MergeWithOutConflict.iml" filepath="$PROJECT_DIR$/MergeWithOutConflict/MergeWithOutConflict.iml" />
       <module fileurl="file://$PROJECT_DIR$/prog-str-2D-silvana-escamilla.iml" filepath="$PROJECT_DIR$/prog-str-2D-silvana-escamilla.iml" />
