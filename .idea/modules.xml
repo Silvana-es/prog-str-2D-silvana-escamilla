@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ActividadBuenasPracticas/ActividadBuenasPracticas.iml" filepath="$PROJECT_DIR$/ActividadBuenasPracticas/ActividadBuenasPracticas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Alumnos_CRUD/Alumnos_CRUD.iml" filepath="$PROJECT_DIR$/Alumnos_CRUD/Alumnos_CRUD.iml" />
       <module fileurl="file://$PROJECT_DIR$/CRUD/CRUD.iml" filepath="$PROJECT_DIR$/CRUD/CRUD.iml" />
       <module fileurl="file://$PROJECT_DIR$/ControlIfElseSilvana-Escamilla/ControlIfElseSilvana-Escamilla.iml" filepath="$PROJECT_DIR$/ControlIfElseSilvana-Escamilla/ControlIfElseSilvana-Escamilla.iml" />
       <module fileurl="file://$PROJECT_DIR$/ControlSwitchSilvana-Escamilla/ControlSwitchSilvana-Escamilla.iml" filepath="$PROJECT_DIR$/ControlSwitchSilvana-Escamilla/ControlSwitchSilvana-Escamilla.iml" />
@@ -10,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/Cotizador/Cotizador.iml" filepath="$PROJECT_DIR$/Cotizador/Cotizador.iml" />
       <module fileurl="file://$PROJECT_DIR$/EjemploClases/EjemploClases.iml" filepath="$PROJECT_DIR$/EjemploClases/EjemploClases.iml" />
       <module fileurl="file://$PROJECT_DIR$/Ejemplo_Arreglo/Ejemplo_Arreglo.iml" filepath="$PROJECT_DIR$/Ejemplo_Arreglo/Ejemplo_Arreglo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HerenciaYPoliformism/HerenciaYPoliformism.iml" filepath="$PROJECT_DIR$/HerenciaYPoliformism/HerenciaYPoliformism.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java2/Java2.iml" filepath="$PROJECT_DIR$/Java2/Java2.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavacGarciaEder/JavacGarciaEder.iml" filepath="$PROJECT_DIR$/JavacGarciaEder/JavacGarciaEder.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavadocEscamillaSilvana/JavadocEscamillaSilvana.iml" filepath="$PROJECT_DIR$/JavadocEscamillaSilvana/JavadocEscamillaSilvana.iml" />
