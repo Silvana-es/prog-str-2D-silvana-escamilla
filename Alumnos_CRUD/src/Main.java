@@ -10,7 +10,7 @@ public class Main {
         int opcion;
 
         do {
-            System.out.println("\n---- MENU ----");
+            System.out.println("MENU");
             System.out.println("1) Alta alumno");
             System.out.println("2) Buscar por ID");
             System.out.println("3) Actualizar promedio");
@@ -23,34 +23,33 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    altaAlumno();
+                    alta();
                 break;
                 case 2:
-                    buscarAlumno();
+                    buscar();
                 break;
                 case 3:
-                    actualizarPromedio();
+                    actualizar();
                 break;
                 case 4:
-                    bajaLogica();
+                    baja();
                 break;
                 case 5:
-                    listarActivos();
+                    listar();
                 break;
                 case 6:
-                    reportes();
+                    reporte();
                 break;
                 case 0:
                     System.out.println("Saliendo del Programa");
+                break;
                 default:
                     System.out.println("Opcion invalida");
             }
 
         } while (opcion != 0);
     }
-
-    // ALTA
-    public static void altaAlumno() {
+    public static void alta() {
 
         System.out.print("ID: ");
         int id = sc.nextInt();
@@ -61,7 +60,7 @@ public class Main {
             return;
         }
 
-        if (buscarPorIdInterno(id) != -1) {
+        if (buscarIDexis(id)) {
             System.out.println("ID repetido");
             return;
         }
@@ -69,13 +68,14 @@ public class Main {
         System.out.print("Nombre: ");
         String nombre = sc.nextLine();
 
-        if (nombre.isEmpty()) {
+        if (nombre.trim().isEmpty()) {
             System.out.println("Nombre vacio");
             return;
         }
 
-        System.out.print("Promedio del 0-10: ");
+        System.out.print("Promedio ingresa un numero dentro de este rango del 0 al 10: ");
         double promedio = sc.nextDouble();
+        sc.nextLine();
 
         if (promedio < 0 || promedio > 10) {
             System.out.println("Promedio invalido");
@@ -85,139 +85,131 @@ public class Main {
         for (int i = 0; i < alumnos.length; i++) {
             if (alumnos[i] == null) {
                 alumnos[i] = new Alumno(id, nombre, promedio);
-                System.out.println("Alumno agregado");
+                System.out.println("Alumno registrado");
                 return;
             }
         }
 
-        System.out.println("Arreglo lleno el limite era de 25 alumnos");
+        System.out.println("Arreglo lleno el limite de alumnos es de 25");
+
+
+    }
+
+    // VALIDAR ID
+    public static boolean buscarIDexis(int id) {
+        for (Alumno alumno : alumnos) {
+            if (alumno != null && alumno.id == id) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // BUSCAR
-    public static void buscarAlumno() {
-
+    public static void buscar() {
         System.out.print("ID a buscar: ");
         int id = sc.nextInt();
+        sc.nextLine();
 
-        int posicion = buscarPorIdInterno(id);
-
-        if (posicion != -1 && alumnos[posicion].activo) {
-            System.out.println("ID: " + alumnos[posicion].id);
-            System.out.println("Nombre: " + alumnos[posicion].nombre);
-            System.out.println("Promedio: " + alumnos[posicion].promedio);
-        } else {
-            System.out.println("Alumno no encontrado o inactivo");
+        for (Alumno alumno : alumnos) {
+            if (alumno != null && alumno.id == id && alumno.activo) {
+                System.out.println("ID: " + alumno.id);
+                System.out.println("Nombre: " + alumno.nombre);
+                System.out.println("Promedio: " + alumno.promedio);
+                return;
+            }
         }
+
+        System.out.println("No encontrado o inactivo");
     }
 
-    // ACTUALIZAR
-    public static void actualizarPromedio() {
-
+    // ACTUALIZAR PROMEDIO
+    public static void actualizar() {
         System.out.print("ID: ");
         int id = sc.nextInt();
+        sc.nextLine();
 
-        int posicion = buscarPorIdInterno(id);
+        for (Alumno alumno : alumnos) {
+            if (alumno != null && alumno.id == id && alumno.activo) {
 
-        if (posicion != -1 && alumnos[posicion].activo) {
+                System.out.print("Nuevo promedio, ingresa un numero dentro de este rango del 0 al 10: ");
+                double nuevo = sc.nextDouble();
+                sc.nextLine();
 
-            System.out.print("Nuevo promedio del 0-10: ");
-            double nuevo = sc.nextDouble();
+                if (nuevo < 0 || nuevo > 10) {
+                    System.out.println("Promedio invalido");
+                    return;
+                }
 
-            if (nuevo >= 0 && nuevo <= 10) {
-                alumnos[posicion].promedio = nuevo;
+                alumno.promedio = nuevo;
                 System.out.println("Promedio actualizado");
-            } else {
-                System.out.println("Promedio invalido");
+                return;
             }
-
-        } else {
-            System.out.println("Alumno no encontrado o inactivo");
         }
+
+        System.out.println("No encontrado o inactivo");
     }
 
     // BAJA LOGICA
-    public static void bajaLogica() {
-
+    public static void baja() {
         System.out.print("ID: ");
         int id = sc.nextInt();
+        sc.nextLine();
 
-        int posicion = buscarPorIdInterno(id);
-
-        if (posicion != -1 && alumnos[posicion].activo) {
-            alumnos[posicion].activo = false;
-            System.out.println("Alumno dado de baja");
-        } else {
-            System.out.println("Alumno no encontrado");
+        for (Alumno alumno : alumnos) {
+            if (alumno != null && alumno.id == id && alumno.activo) {
+                alumno.activo = false;
+                System.out.println("Alumno dado de baja");
+                return;
+            }
         }
+
+        System.out.println("No encontrado");
     }
 
-    // LISTAR
-    public static void listarActivos() {
-
-        for (int i = 0; i < alumnos.length; i++) {
-            if (alumnos[i] != null && alumnos[i].activo) {
-                System.out.println("ID: " + alumnos[i].id + " Nombre: " + alumnos[i].nombre + " Promedio: " + alumnos[i].promedio);
+    // LISTAR ACTIVOS
+    public static void listar() {
+        for (Alumno alumno : alumnos) {
+            if (alumno != null && alumno.activo) {
+                System.out.println(alumno.id + " - " + alumno.nombre + " - " + alumno.promedio);
             }
         }
     }
 
-    // REPORTES
-    public static void reportes() {
-
+    // REPORTE
+    public static void reporte() {
         double suma = 0;
         int contador = 0;
+        int mayores = 0;
         Alumno mayor = null;
         Alumno menor = null;
-        int mayores = 0;
 
-        for (int i = 0; i < alumnos.length; i++) {
-
-            if (alumnos[i] != null && alumnos[i].activo) {
-
-                suma += alumnos[i].promedio;
+        for (Alumno alumno : alumnos) {
+            if (alumno != null && alumno.activo) {
+                suma += alumno.promedio;
                 contador++;
-
-                if (mayor == null || alumnos[i].promedio > mayor.promedio) {
-                    mayor = alumnos[i];
+                if (mayor == null || alumno.promedio > mayor.promedio) {
+                    mayor = alumno;
                 }
-
-                if (menor == null || alumnos[i].promedio < menor.promedio) {
-                    menor = alumnos[i];
+                if (menor == null || alumno.promedio < menor.promedio) {
+                    menor = alumno;
                 }
-
-                if (alumnos[i].promedio >= 8.0) {
+                if (alumno.promedio >= 8.0) {
                     mayores++;
                 }
             }
         }
-
         if (contador == 0) {
             System.out.println("No hay alumnos activos");
             return;
         }
-        double promedioGeneral ;
-             promedioGeneral = suma / contador;
-
+        double promedioGeneral = suma / contador;
         System.out.println("Promedio general: " + promedioGeneral);
-
-        System.out.println("Mayor promedio:");
-        System.out.println("ID: " + mayor.id + " Nombre: " + mayor.nombre + " Promedio: " + mayor.promedio);
-
-        System.out.println("Menor promedio:");
-        System.out.println("ID: " + menor.id + " Nombre: " + menor.nombre + " Promedio: " + menor.promedio);
-
-        System.out.println("Alumnos con promedio >= 8: " + mayores);
+        System.out.println("Alumno con Mayor promedio:");
+        System.out.println(mayor.id + " - " + mayor.nombre + " - " + mayor.promedio);
+        System.out.println("Alumno con Menor promedio:");
+        System.out.println(menor.id + " - " + menor.nombre + " - " + menor.promedio);
+        System.out.println("Cantidad de alumnos con promedio a 8: " + mayores);
     }
 
-    // BUSQUEDA INTERNA
-    public static int buscarPorIdInterno(int id) {
-
-        for (int i = 0; i < alumnos.length; i++) {
-            if (alumnos[i] != null && alumnos[i].id == id) {
-                return i;
-            }
-        }
-
-        return id;
-    }
 }
