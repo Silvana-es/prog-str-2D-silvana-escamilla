@@ -10,28 +10,30 @@ public class PersonServices {
     private PersonFileRepository repo = new PersonFileRepository();
 
     public List<String> loadDataForList() throws IOException {
-        List<String> lines = repo.readAllLines(); //Recupera las lineas de archivo
+        List<String> lines = repo.readAllLines(); //Recupera las lineas del archivo
         List<String> result = new ArrayList<>();//Listado de resultado con el formato deseado
         for (String line : lines){
-            if (line==null || line.isBlank()) continue; //Ignora las lineas nulas
+            if (line==null || line.isBlank()) continue;
 
             String[] parts = line.split(",", -1);
-            String name = parts[0].trim(); // Obtiee el nombre del arreglo
-            String correo = parts[1].trim(); //Obtiene el correo del arreglo
-            result.add(name+"-"+correo);//Se agrega a la lista de resultados con el formato
+            String name = parts[0].trim(); // Obtiene el nombre
+            String correo = parts[1].trim(); //Obtiene el correo
+            String edad = parts[2].trim();
+            result.add(name + " - " + correo + " - " + edad);//Se agrega a la lista de resultados con el formato
         }
         return result;
     }
-    public void addPerson(String name, String email) throws IOException {
-        validarPerson(name,email);
+    public void addPerson(String name, String email, String edad) throws IOException {
+        validarPerson(name,email,edad);
         String nameNoComa = name.replace(",", " ");
         String emailNoComa= email.replace(",","");
+        String edadNoComa= edad.replace(",", "");
 
-        repo.appendNewLine(nameNoComa + "," + emailNoComa);
+        repo.appendNewLine(nameNoComa + "," + emailNoComa + "," + edadNoComa);
     }
-    private void validarPerson(String name, String email) {
+    private void validarPerson(String name, String email, String edad) {
         if (name == null || name.isBlank() || name.length() < 3) {
-            throw new IllegalArgumentException("El nombre no cumple con los estándares");
+            throw new IllegalArgumentException("El nombre no cumple con los estandares");
         }
 
         String em = (email == null) ? "" : email.trim();
@@ -40,5 +42,16 @@ public class PersonServices {
             throw new IllegalArgumentException("El correo es incorrecto");
 
         }
+        int edadNum;
+        try {
+            edadNum = Integer.parseInt(edad);
+            if (edadNum < 18) {
+                throw new IllegalArgumentException("Solo se permiten mayores de edad");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("La edad debe ser numerica");
+        }
+
+
     }
 }

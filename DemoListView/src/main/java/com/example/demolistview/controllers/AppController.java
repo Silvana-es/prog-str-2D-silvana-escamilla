@@ -23,12 +23,14 @@ public class AppController {
     @FXML
     private TextField txtEmail;
     @FXML
+    private TextField txtEdad;
+    @FXML
     private final ObservableList<String> data = FXCollections.observableArrayList();
 
     private PersonServices service = new PersonServices();
 
-    @FXML
-    public void initialize(){ //Se ejecuta al inicio en cuanto se cargue el controller
+    @FXML//Ejecuta al inicio en cuanto se cargue el controller
+    public void initialize(){
         //Inicializar ListView
         listView.setItems(data);
         loadFromFile();
@@ -37,18 +39,20 @@ public class AppController {
     public void onAddPerson(){
         try{
             String name=txtName.getText();
-            String email=txtEmail.getText();
-            service.addPerson(name,email);
+            String email = txtEmail.getText();
+            String edad=txtEdad.getText();
+            service.addPerson(name,email,edad);
             lblMsg.setText("Persona agregada con exito");
             lblMsg.setStyle("-fx-text-fill: green");
             txtName.clear();
             txtEmail.clear();
+            txtEdad.clear();
             loadFromFile();
         }catch (IOException e){
             lblMsg.setText("Hubo un error con el archivo");
             lblMsg.setStyle("-fx-text-fill: red");
         }catch (IllegalArgumentException ex){
-            lblMsg.setText("Hubo un error con los datos");
+            lblMsg.setText(ex.getMessage());
             lblMsg.setStyle("-fx-text-fill: red");
         }
 
