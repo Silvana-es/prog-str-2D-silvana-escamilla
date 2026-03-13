@@ -32,8 +32,12 @@ public class AppController {
     @FXML//Ejecuta al inicio en cuanto se cargue el controller
     public void initialize(){
         //Inicializar ListView
-        listView.setItems(data);
         loadFromFile();
+        listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            loadDataToForm(newValue);//String con el valor del repo 0 test-email0gmail
+        });
+        listView.setItems(data);
+
     }
     @FXML
     public void onAddPerson(){
@@ -42,12 +46,12 @@ public class AppController {
             String email = txtEmail.getText();
             String edad=txtEdad.getText();
             service.addPerson(name,email,edad);
-            lblMsg.setText("Persona agregada con exito");
-            lblMsg.setStyle("-fx-text-fill: green");
+            loadFromFile();
             txtName.clear();
             txtEmail.clear();
             txtEdad.clear();
-            loadFromFile();
+            lblMsg.setText("Persona agregada con exito");
+            lblMsg.setStyle("-fx-text-fill: green");
         }catch (IOException e){
             lblMsg.setText("Hubo un error con el archivo");
             lblMsg.setStyle("-fx-text-fill: red");
@@ -56,6 +60,30 @@ public class AppController {
             lblMsg.setStyle("-fx-text-fill: red");
         }
 
+    }
+    @FXML
+    public void onUpdate(){
+        int index=listView.getSelectionModel().getSelectedIndex();
+        String name=txtName.getText();
+        String email=txtEmail.getText();
+        String edad=txtEdad.getText();
+        try{
+            service.updatePerson(index,name,email,edad);
+            loadFromFile();
+            txtName.clear();
+            txtEmail.clear();
+            txtEdad.clear();
+            lblMsg.setText("Persona agregada con exito");
+            lblMsg.setStyle("-fx-text-fill: green");
+
+        }catch (IOException e){
+            lblMsg.setText("Hubo un error con el archivo");
+            lblMsg.setStyle("-fx-text-fill: red");
+
+        }catch (IllegalArgumentException ex){
+            lblMsg.setText("Hubo un error con el archivo");
+            lblMsg.setStyle("-fx-text-fill: red");
+        }
     }
 
     private void loadFromFile(){
@@ -68,5 +96,12 @@ public class AppController {
             lblMsg.setText(e.getMessage());
             lblMsg.setStyle("-fx-text-fill: red");
         }
+    }
+    private void loadDataToForm(String item){
+
+        String[] items = item.split(",");
+        txtName.setText(items[0]);//Corresponde a la parte del nombre
+        txtEmail.setText(items[1]);//Corresponde a la parte del email
+        txtEdad.setText(items[2]);//Corresponde a la parte de edad
     }
 }

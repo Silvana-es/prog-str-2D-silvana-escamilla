@@ -34,8 +34,13 @@ public class PersonFileRepository {
 
     // Metodo para agregar una nueva línea al archivo
     public void appendNewLine(String line) throws IOException {
+        // Escribe una nueva linea al final del archivo sin borrar las anteriores
+        Files.writeString(filePath, line+System.lineSeparator(), StandardCharsets.UTF_8, StandardOpenOption.APPEND);
+    }
+    // Metodo para agregar una nueva línea al archivo
+    public void appendNewLines(List<String> lines) throws IOException {
 
         // Escribe una nueva linea al final del archivo sin borrar las anteriores
-        Files.writeString(filePath, line + System.lineSeparator(), StandardCharsets.UTF_8, StandardOpenOption.APPEND);
+        Files.write(filePath, lines, StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING);
     }
 }

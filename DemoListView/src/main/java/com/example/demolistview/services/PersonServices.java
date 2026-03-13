@@ -25,11 +25,29 @@ public class PersonServices {
     }
     public void addPerson(String name, String email, String edad) throws IOException {
         validarPerson(name,email,edad);
-        String nameNoComa = name.replace(",", " ");
+        String nameNoComa = name.replace(",", "");
         String emailNoComa= email.replace(",","");
         String edadNoComa= edad.replace(",", "");
 
         repo.appendNewLine(nameNoComa + "," + emailNoComa + "," + edadNoComa);
+    }
+    public void updatePerson(int index,String name, String email, String edad) throws IOException {
+        List<String> lines = repo.readAllLines();
+        if(index == -1){
+            throw new IllegalArgumentException("El indice recibido es invalido");
+        }
+        lines.set(index, name + "," + email + "," + edad);
+        repo.appendNewLines(lines);
+    }
+    private List<String> getAllCleanLines()throws IOException{
+        List<String> lines=repo.readAllLines();
+        List<String> cleanLines = new ArrayList<>();
+        for (String line : lines){
+            if (line==null && line.isBlank()){
+                cleanLines.add(line);
+            }
+        }
+        return cleanLines;
     }
     private void validarPerson(String name, String email, String edad) {
         if (name == null || name.isBlank() || name.length() < 3) {
