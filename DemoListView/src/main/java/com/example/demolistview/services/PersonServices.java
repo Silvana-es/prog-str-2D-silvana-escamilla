@@ -39,6 +39,11 @@ public class PersonServices {
         lines.set(index, name + "," + email + "," + edad);
         repo.appendNewLines(lines);
     }
+    public void deletePerson(int index) throws IOException {
+        List<String> lines = repo.readAllLines();
+        lines.remove(index);
+        repo.appendNewLines(lines);
+    }
     private List<String> getAllCleanLines()throws IOException{
         List<String> lines=repo.readAllLines();
         List<String> cleanLines = new ArrayList<>();

@@ -28,9 +28,10 @@
 
    <HBox prefHeight="100.0" prefWidth="200.0">
       <children>
-      <Button mnemonicParsing="false" text="Recargar" />
+      <Button mnemonicParsing="false"  onAction="#onReload" text="Recargar" />
          <Button mnemonicParsing="false" onAction="#onAddPerson" text="Agregar" />
-         <Button mnemonicParsing="false" onAction="#onUpdate" text="Actualizar"/>
+         <Button mnemonicParsing="false" onAction="#onUpdate" text="Actualizar" />
+         <Button mnemonicParsing="false" onAction="#onDelete" text="Borrar" />
    </children>
    </HBox>
 
