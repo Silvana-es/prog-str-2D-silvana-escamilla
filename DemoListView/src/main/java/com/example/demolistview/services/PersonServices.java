@@ -23,13 +23,31 @@ public class PersonServices {
         }
         return result;
     }
+
+    public List<String> loadDataForListBusqueda(String busqueda) throws IOException {
+        List<String> lines = repo.readAllLines(); //Recupera las lineas del archivo
+        List<String> result = new ArrayList<>();//Listado de resultado con el formato deseado
+        for (String line : lines){
+            if (line==null || line.isBlank()) continue;
+
+            String[] parts = line.split(",", -1);
+            String name = parts[0].trim(); // Obtiene el nombre
+            String correo = parts[1].trim(); //Obtiene el correo
+            if(!correo.contains(busqueda)) continue;
+            String edad = parts[2].trim();
+            result.add(name + " - " + correo + " - " + edad);//Se agrega a la lista de resultados con el formato
+        }
+        return result;
+    }
+
+
     public void addPerson(String name, String email, String edad) throws IOException {
         validarPerson(name,email,edad);
         String nameNoComa = name.replace(",", "");
         String emailNoComa= email.replace(",","");
         String edadNoComa= edad.replace(",", "");
 
-        repo.appendNewLine(nameNoComa + "," + emailNoComa + "," + edadNoComa);
+        repo.appendNewLine(nameNoComa + "," + emailNoComa + "," + edadNoComa + "\n");
     }
     public void updatePerson(int index,String name, String email, String edad) throws IOException {
         List<String> lines = repo.readAllLines();

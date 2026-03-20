@@ -25,6 +25,9 @@ public class AppController {
     @FXML
     private TextField txtEdad;
     @FXML
+    private TextField txtBuscar;
+
+    @FXML
     private final ObservableList<String> data = FXCollections.observableArrayList();
 
     private PersonServices service = new PersonServices();
@@ -37,7 +40,10 @@ public class AppController {
             loadDataToForm(newValue);//String con el valor del repo 0 test-email0gmail
         });
         listView.setItems(data);
-
+        txtBuscar.textProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Text field changed from " + oldValue + " to " + newValue);
+            loadFromFileBusqueda(newValue);
+        });
     }
     @FXML
     public void onAddPerson(){
@@ -120,9 +126,20 @@ public class AppController {
             lblMsg.setStyle("-fx-text-fill: red");
         }
     }
+
+    private void loadFromFileBusqueda(String busqueda){
+        try{
+            List<String> items = service.loadDataForListBusqueda(busqueda);
+            data.setAll(items);
+
+        }catch (IOException e){
+            lblMsg.setText(e.getMessage());
+            lblMsg.setStyle("-fx-text-fill: red");
+        }
+    }
     private void loadDataToForm(String item){
 
-        String[] items = item.split(",");
+        String[] items = item.split("-");
         txtName.setText(items[0]);//Corresponde a la parte del nombre
         txtEmail.setText(items[1]);//Corresponde a la parte del email
         txtEdad.setText(items[2]);//Corresponde a la parte de edad
